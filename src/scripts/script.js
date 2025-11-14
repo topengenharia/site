@@ -1,35 +1,29 @@
-import initCareousel from '../pages/index/js/carousel.js';
-import Modal from './modules/modal.js';
-import {
-  enviarArquivoNome,
-  opcaoAssuntoSelecionado,
-  oberservadorAssunto,
-} from '../pages/contato/contato.js';
-import menuMobile from './modules/menu-mobie.js';
+import initCareousel from "../pages/index/js/carousel.js";
+import Modal from "./modules/modal.js";
+import menuMobile from "./modules/menu-mobile.js";
 
 menuMobile();
 
-const body = document.querySelector('body').getAttribute('id');
-const index = body == 'index';
+const bodyId = document.body.getAttribute("id");
 
-if (index) {
+if (bodyId === "index" && typeof initCareousel === "function") {
   initCareousel();
 }
 
-const imagesModal = document.querySelectorAll('[data-img="modal"] li');
-
-imagesModal.forEach((image) => {
-  image.addEventListener('click', (e) => {
-    const image = e;
-    const novoModal = new Modal(image);
-    return novoModal.iniciarModal();
+if (bodyId === "contato") {
+  import("../pages/contato/contato.js").then(({ enviarArquivoNome, opcaoAssuntoSelecionado, oberservadorAssunto }) => {
+    enviarArquivoNome();
+    opcaoAssuntoSelecionado();
+    oberservadorAssunto();
   });
-});
+}
 
-const contato = body == 'contato';
-
-if (contato) {
-  enviarArquivoNome();
-  opcaoAssuntoSelecionado();
-  oberservadorAssunto();
+const imagesModal = document.querySelectorAll('[data-img="modal"] li');
+if (imagesModal.length > 0) {
+  imagesModal.forEach((image) => {
+    image.addEventListener("click", (e) => {
+      const novoModal = new Modal(e.currentTarget);
+      novoModal.iniciarModal();
+    });
+  });
 }
