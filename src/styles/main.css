@@ -1,0 +1,60 @@
+/* Global */
+@import './global.css';
+
+/* Reset */
+@import './vendor/reset.css';
+
+/* Components */
+@import './components/button.css';
+@import './components/colors.css';
+@import './components/typography.css';
+@import './components/streach-bg.css';
+@import './components/card.css';
+@import './components/mini-card.css';
+@import './components/road-card.css';
+@import './components/arrow.css';
+
+/* Layout */
+@import './layout/header/header.css';
+@import './layout/header/dropdown.css';
+@import './layout/footer/footer.css';
+
+/* Pages */
+@import '../pages/index/hero-section.css';
+@import '../pages/index/card-section.css';
+@import '../pages/clientes/clientes.css';
+@import '../pages/obras/barragens/barragens.css';
+@import '../pages/obras/saneamento/saneamento.css';
+@import '../pages/obras/barragens/pedra-alta/pedra-alta.css';
+@import '../pages/obras/barragens/barra-choca/barra-choca.css';
+@import '../pages/obras/saneamento/abastecimento-agua-candeias-sfc-md/abastecimento-agua-candeias-sfc-md.css';
+@import '../pages/obras/saneamento/esgotamento-sanitario-fs/esgotamento-sanitario-fs.css';
+@import '../pages/contato/contato.css';
+
+/* Fonts */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/src/assets/fonts/Inter-VariableFont_opsz\,wght.ttf')
+    format('truetype-variations');
+}
+
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/src/assets/fonts/NotoSerif-VariableFont_wdth\,wght.ttf')
+    format('truetype-variations');
+}
+
+@font-face {
+  font-family: 'Noto Serif';
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/src/assets/fonts/NotoSerif-Italic-VariableFont_wdth\,wght.ttf')
+    format('truetype-variations');
+}

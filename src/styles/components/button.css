@@ -1,0 +1,23 @@
+.main-button {
+  flex-shrink: 0;
+
+  color: #f8f9fa;
+  background: var(--color-primary);
+
+  font-family: 'Noto Serif';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  border: none;
+  border-radius: 4px;
+
+  padding: 15px 35px;
+
+  cursor: pointer;
+}
+
+.main-button:hover {
+  opacity: 0.9;
+}

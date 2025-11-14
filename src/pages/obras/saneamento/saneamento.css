@@ -1,0 +1,11 @@
+.background-1-obras-saneamento {
+  background: url(../../../assets/images/obras/saneamento/abastecimento-agua-candeias-sfc-md/1.png)
+      50% / cover no-repeat,
+    #d9d9d9;
+}
+
+.background-2-obras-saneamento {
+  background: url(../../../assets/images/obras/saneamento/esgotamento-sanitario-fs/1.png)
+      50% / cover no-repeat,
+    #d9d9d9;
+}

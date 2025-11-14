@@ -1,0 +1,27 @@
+#image-1-pedra-alta {
+  background: url(../../../../assets/images/obras/barragens/pedras-altas/1.png)
+      50% / cover no-repeat,
+    #d9d9d9;
+  height: 497px;
+}
+
+#image-2-pedra-alta {
+  background: url(../../../../assets/images/obras/barragens/pedras-altas/2.png)
+      50% / cover no-repeat,
+    #d9d9d9;
+  height: 195px;
+}
+
+#image-3-pedra-alta {
+  background: url(../../../../assets/images/obras/barragens/pedras-altas/3.png)
+      50% / cover no-repeat,
+    #d9d9d9;
+  height: 195px;
+}
+
+#image-4-pedra-alta {
+  background: url(../../../../assets/images/obras/barragens/pedras-altas/4.png)
+      50% / cover no-repeat,
+    #d9d9d9;
+  height: 195px;
+}

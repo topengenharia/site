@@ -1,0 +1,13 @@
+.streach-bg {
+  display: flex;
+  justify-content: center;
+  margin-inline: auto;
+}
+
+.bg-color-white {
+  background: white;
+}
+
+.bg-color-secondary {
+  background: var(--color-secondary);
+}

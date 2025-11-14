@@ -1,0 +1,84 @@
+.card-container {
+  display: flex;
+  align-items: end;
+  max-width: 464px;
+  height: 545px;
+  padding: 0px 50px 20px;
+  box-shadow: 0 -280px 50px -40px rgba(0, 0, 0, 0.55) inset;
+  border-radius: 4px;
+}
+
+.background-1 {
+  background: url(../../assets/images/card-img/atop.png) 50% / cover no-repeat,
+    #d9d9d9;
+}
+
+.background-2 {
+  background: url(../../assets/images/card-img/qualidade.png) 50% / cover
+      no-repeat,
+    #d9d9d9;
+}
+
+.background-3 {
+  background: url(../../assets/images/card-img/resp_ambiental.png) 50% / cover
+      no-repeat,
+    #d9d9d9;
+}
+
+.background-4 {
+  background: url(../../assets/images/obras/barragens/pedras-altas/1.png) 50% /
+      cover no-repeat,
+    #d9d9d9;
+}
+
+.background-5 {
+  background: url(../../assets/images/obras/barragens/barra-choca/3.png) 50% /
+      cover no-repeat,
+    #d9d9d9;
+}
+
+.background-6 {
+  background: url(../../assets/images/obras/saneamento/esgotamento-sanitario-fs/1.png)
+      50% / cover no-repeat,
+    #d9d9d9;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-items: end;
+  align-items: center;
+  text-align: center;
+}
+
+.card-container a {
+  margin-top: 20px;
+  align-self: center;
+  justify-self: center;
+}
+
+.card-container p {
+  color: var(--color-text-secondary);
+  margin-top: 5px;
+}
+
+.card-container h2 {
+  color: var(--color-title-secondary);
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-card-title);
+}
+
+@media (max-width: 1251px) {
+  .card-container {
+    padding: 0px 25px 10px;
+  }
+
+  .card-container h2 {
+    font-size: var(--font-size-subtitle);
+  }
+}
