@@ -89,7 +89,7 @@ document.getElementById("formContato").addEventListener("submit", async (e) => {
     }
   }
 
-  const recaptchaToken = document.querySelector("[name='g-recaptcha-response']")?.value;
+  const recaptchaToken = grecaptcha.getResponse();
 
   if (!recaptchaToken) {
     alert("Por favor, marque o reCAPTCHA.");
