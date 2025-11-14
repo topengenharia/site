@@ -5,11 +5,14 @@ export function enviarArquivoNome() {
   const textoPadrao = labelText.textContent;
 
   inputFile.addEventListener("change", (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const nomeDoArquivo = e.target.files[0].name;
-      labelText.textContent = nomeDoArquivo;
+    const file = e.target.files?.[0];
+    if (file) {
+      labelText.textContent = file.name;
       btnText.textContent = "Selecionado";
-    } else labelText.textContent = textoPadrao;
+    } else {
+      labelText.textContent = textoPadrao;
+      btnText.textContent = "Escolher Arquivo";
+    }
   });
 }
 
@@ -22,24 +25,24 @@ export function opcaoAssuntoSelecionado() {
     input.addEventListener("click", (e) => {
       valorSelecionado.textContent = input.dataset.label;
 
-      const ehMouseOuToque = e.pointerType == "mouse" || e.pointerType == "touch";
+      const eventoEhMouseOuToque = e.pointerType === "mouse" || e.pointerType === "touch";
 
-      ehMouseOuToque && checkbox.click();
+      if (eventoEhMouseOuToque) checkbox.click();
     });
   });
 }
 
 export function oberservadorAssunto() {
   const curriculoSelecionado = document.querySelector('input[value="curriculo"]');
-  const botaoEnviarArquivo = document.getElementById("formArquivo");
-  const todosOsRadios = document.querySelectorAll('input[name="category"]');
+  const campoArquivo = document.getElementById("formArquivo");
+  const radios = document.querySelectorAll('input[name="category"]');
 
-  todosOsRadios.forEach((radio) => {
+  radios.forEach((radio) => {
     radio.addEventListener("change", () => {
       if (curriculoSelecionado.checked) {
-        botaoEnviarArquivo.classList.add("mostrar");
+        campoArquivo.classList.add("mostrar");
       } else {
-        botaoEnviarArquivo.classList.remove("mostrar");
+        campoArquivo.classList.remove("mostrar");
       }
     });
   });
@@ -48,16 +51,22 @@ export function oberservadorAssunto() {
 document.getElementById("formContato").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const nome = document.getElementById("nome").value;
-  const email = document.getElementById("email").value;
-  const mensagem = document.getElementById("mensagem").value;
+  const nome = document.getElementById("nome").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const mensagem = document.getElementById("mensagem").value.trim();
   const categoria = document.querySelector("input[name='category']:checked")?.value;
 
-  const fileInput = document.getElementById("file");
+  if (!categoria) {
+    alert("Selecione um assunto.");
+    return;
+  }
+
   let fileBase64 = null;
   let filename = null;
 
   if (categoria === "curriculo") {
+    const fileInput = document.getElementById("file");
+
     if (!fileInput.files[0]) {
       alert("Envie um arquivo de currículo.");
       return;
@@ -66,16 +75,29 @@ document.getElementById("formContato").addEventListener("submit", async (e) => {
     const file = fileInput.files[0];
     filename = file.name;
 
-    fileBase64 = await new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result.split(",")[1]);
-      reader.readAsDataURL(file);
-    });
+    try {
+      fileBase64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result.split(",")[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    } catch (error) {
+      console.error("Erro ao ler arquivo:", error);
+      alert("Erro ao processar o arquivo. Tente novamente.");
+      return;
+    }
   }
 
-  const recaptchaToken = await grecaptcha.execute("6Lfm6wwsAAAAAPSXjRMWlwWxs8XkcZ_Knd9nOvzU", {
-    action: "submit",
-  });
+  let recaptchaToken = null;
+
+  try {
+    recaptchaToken = await window.grecaptcha.execute("6LfM8AwsAAAAAK2pSPIuWCAeHx5QEvq97CfHtz1F", { action: "submit" });
+  } catch (err) {
+    console.error("Erro no reCAPTCHA:", err);
+    alert("Erro ao validar reCAPTCHA. Atualize a página.");
+    return;
+  }
 
   const payload = {
     name: nome,
@@ -88,18 +110,27 @@ document.getElementById("formContato").addEventListener("submit", async (e) => {
 
   const endpoint = categoria === "curriculo" ? "/api/send-curriculo" : "/api/send-email";
 
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  /* -------------------------- */
+  /* Enviar dados ao backend */
+  /* -------------------------- */
+  try {
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
 
-  const json = await res.json();
+    const json = await res.json();
 
-  if (json.success) {
-    alert("Mensagem enviada com sucesso!");
-    e.target.reset();
-  } else {
-    alert("Erro ao enviar. Tente novamente.");
+    if (json.success) {
+      alert("Mensagem enviada com sucesso!");
+      e.target.reset();
+      document.querySelector("#formArquivo span").textContent = "Nenhum arquivo selecionado.";
+    } else {
+      alert(json.error || "Erro ao enviar. Tente novamente.");
+    }
+  } catch (error) {
+    console.error("Erro no envio:", error);
+    alert("Erro inesperado. Verifique sua conexão e tente de novo.");
   }
 });
