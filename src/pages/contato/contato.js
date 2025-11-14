@@ -89,13 +89,10 @@ document.getElementById("formContato").addEventListener("submit", async (e) => {
     }
   }
 
-  let recaptchaToken = null;
+  const recaptchaToken = document.querySelector("[name='g-recaptcha-response']")?.value;
 
-  try {
-    recaptchaToken = await window.grecaptcha.execute("6LfM8AwsAAAAAK2pSPIuWCAeHx5QEvq97CfHtz1F", { action: "submit" });
-  } catch (err) {
-    console.error("Erro no reCAPTCHA:", err);
-    alert("Erro ao validar reCAPTCHA. Atualize a página.");
+  if (!recaptchaToken) {
+    alert("Por favor, marque o reCAPTCHA.");
     return;
   }
 
