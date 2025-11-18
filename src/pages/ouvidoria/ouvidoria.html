@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contato</title>
+  <title>Ouvidoria</title>
   <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon" />
   <link rel="stylesheet" href="../../styles/main.css" />
 </head>
 
-<body id="contato">
+<body id="ouvidoria">
   <div class="streach-bg bg-color-white">
     <header id="header">
       <nav id="header-navbar">
@@ -66,11 +66,11 @@
     </header>
   </div>
 
-  <section id="banner" class="banner-img1"></section>
+  <section id="banner" class="banner-img6"></section>
 
   <main id="main" class="container">
-    <h1 id="h1-contato">Envie sua Mensagem</h1>
-    <p id="text-contato">Caso queira enviar um currículo, selecione esta opção no campo Assunto</p>
+    <h1 id="h1-contato">Fale Conosco</h1>
+    <p id="text-contato">Sua voz é importante: registre sua manifestação para que possamos melhorar continuamente.</p>
 
     <form id="formContato" action="">
       <div id="formNome">
@@ -88,38 +88,20 @@
         <textarea name="mensagem" id="mensagem" cols="24" required></textarea>
       </div>
 
-      <div id="select">
-        <div id="formAssunto">
-          <label for="assunto">Assunto:</label>
-          <input type="checkbox" id="assunto" />
-          <div id="select-button">
-            <div id="selected-value">Selecionar Assunto</div>
-            <img src="../../assets/images/icons/chevron-down.svg" alt="" />
-          </div>
-        </div>
-
-        <ul id="options">
-          <li><strong>Escolha um assunto</strong></li>
-          <li class="option">
-            <input type="radio" name="category" value="contato" data-label="Contato" />
-            <span>Contato</span>
-            <img src="../../assets/images/icons/dot.svg" alt="" />
-          </li>
-          <li class="option">
-            <input type="radio" name="category" value="curriculo" data-label="Curriculo" />
-            <span>Curriculo</span>
-            <img src="../../assets/images/icons/dot.svg" alt="" />
-          </li>
-        </ul>
-      </div>
-
       <div id="formArquivo">
         <label class="main-button" for="file">Escolher Arquivo</label>
         <input type="file" name="file" id="file" />
         <span>Nenhum arquivo selecionado.</span>
       </div>
+
       <button class="main-button" id="formBtn" type="submit">Enviar</button>
+
+      <div id="formCheckbox">
+        <input type="checkbox" name="modoAnonimo" id="anonimo">
+        <label for="anonimo">Modo anônimo <span>❎</span></label>
+      </div>
     </form>
+
     <div class="g-recaptcha" data-sitekey="6Lfm6wwsAAAAAPSXjRMWlwWxs8XkcZ_Knd9nOvzU"></div>
   </main>
 
@@ -152,7 +134,7 @@
   </div>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script type="module" src="../../scripts/script.js"></script>
-  <script type="module" src="contato.js"></script>
+  <script type="module" src="ouvidoria.js"></script>
 </body>
 
 </html>
