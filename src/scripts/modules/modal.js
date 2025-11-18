@@ -1,6 +1,6 @@
 export default class Modal {
   constructor(e) {
-    this.image = e.currentTarget;
+    this.image = e;
     this.modal = this.criarModal();
     document.body.append(this.modal);
 

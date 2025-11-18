@@ -2,6 +2,7 @@ import initCareousel from '../pages/index/js/carousel.js';
 import Modal from './modules/modal.js';
 import menuMobile from './modules/menu-mobile.js';
 import verificarAnonimo from '../pages/ouvidoria/ouvidoria.js';
+import imgNoDraggable from './modules/imgnodraggable.js';
 
 menuMobile();
 
@@ -39,3 +40,5 @@ if (imagesModal.length > 0) {
     });
   });
 }
+
+document.addEventListener('DOMContentLoaded', imgNoDraggable());

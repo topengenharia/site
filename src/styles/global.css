@@ -211,6 +211,20 @@ main #main-title {
   }
 }
 
+@media (max-width: 800px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
+
+  #main-info,
+  .main-container h1,
+  #main-images,
+  #main-images {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
 @media (max-width: 690px) {
   main #main-title {
     margin-top: 40px;
@@ -228,6 +242,18 @@ main #main-title {
 
   .container {
     padding-inline: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-2,
+  .image-3,
+  .image-4 {
+    grid-column: 1 / -1;
+  }
+
+  #main.container {
+    padding-inline: 10px;
   }
 }
 
