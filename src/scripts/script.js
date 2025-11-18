@@ -1,27 +1,39 @@
-import initCareousel from "../pages/index/js/carousel.js";
-import Modal from "./modules/modal.js";
-import menuMobile from "./modules/menu-mobile.js";
+import initCareousel from '../pages/index/js/carousel.js';
+import Modal from './modules/modal.js';
+import menuMobile from './modules/menu-mobile.js';
+import verificarAnonimo from '../pages/ouvidoria/ouvidoria.js';
 
 menuMobile();
 
-const bodyId = document.body.getAttribute("id");
+const bodyId = document.body.getAttribute('id');
 
-if (bodyId === "index" && typeof initCareousel === "function") {
+if (bodyId === 'index' && typeof initCareousel === 'function') {
   initCareousel();
 }
 
-if (bodyId === "contato") {
-  import("../pages/contato/contato.js").then(({ enviarArquivoNome, opcaoAssuntoSelecionado, oberservadorAssunto }) => {
+if (bodyId === 'contato' || bodyId === 'ouvidoria') {
+  import('../pages/contato/contato.js').then(
+    ({ opcaoAssuntoSelecionado, oberservadorAssunto }) => {
+      opcaoAssuntoSelecionado();
+      oberservadorAssunto();
+    }
+  );
+
+  import('./modules/forms.js').then(({ default: enviarArquivoNome }) => {
     enviarArquivoNome();
-    opcaoAssuntoSelecionado();
-    oberservadorAssunto();
   });
+}
+
+if (bodyId === 'ouvidoria') {
+  verificarAnonimo();
+  const formFile = document.getElementById('formArquivo');
+  formFile.style.display = 'block';
 }
 
 const imagesModal = document.querySelectorAll('[data-img="modal"] li');
 if (imagesModal.length > 0) {
   imagesModal.forEach((image) => {
-    image.addEventListener("click", (e) => {
+    image.addEventListener('click', (e) => {
       const novoModal = new Modal(e.currentTarget);
       novoModal.iniciarModal();
     });

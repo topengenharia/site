@@ -61,6 +61,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-family-heading);
+  text-transform: uppercase;
   color: var(--color-title);
   text-wrap: balance;
 }
